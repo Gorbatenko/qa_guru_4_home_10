@@ -1,7 +1,9 @@
 package helpers;
 
 import com.codeborne.selenide.Selenide;
+import config.EnvironmentConfig;
 import io.qameta.allure.Attachment;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -31,13 +33,10 @@ public class AttachmentsHelper {
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
     public static String attachVideo() {
+        EnvironmentConfig envConfig = ConfigFactory.create(EnvironmentConfig.class);
         return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + getVideoUrl()
+                + String.format(envConfig.getSelenoidVideo(), getSessionId())
                 + "' type='video/mp4'></video></body></html>";
-    }
-
-    public static String getVideoUrl() {
-        return System.getProperty("selenoid", "selenoid") + "video/" + getSessionId() + ".mp4";
     }
 
     public static String getSessionId() {
