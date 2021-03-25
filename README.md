@@ -16,3 +16,4 @@
 В качестве ответа на задание:
 Ссылку на репозиторий в Github и закомиченый конфиг файл
 ### Ответ
+Вот ссылка на Item - https://jenkins.autotests.cloud/job/C04-G14-Vitaliy-qa_guru_4_10_Owner/
