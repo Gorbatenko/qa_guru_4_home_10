@@ -3,7 +3,6 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import config.EnvironmentConfig;
-import config.TestRunConfig;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -16,7 +15,6 @@ import static helpers.AttachmentsHelper.attachScreenshot;
 
 public class BaseTest {
     EnvironmentConfig envConfig = ConfigFactory.create(EnvironmentConfig.class);
-    TestRunConfig testRunConfig = ConfigFactory.create(TestRunConfig.class);
 
     @BeforeEach
     void setUp() {
@@ -35,7 +33,7 @@ public class BaseTest {
                     envConfig.getSelenoidPassword());
         }
 
-        setEnvironmentAllure("task", testRunConfig.getTask());
+        setEnvironmentAllure("task", System.getProperty("TASK","test"));
         setEnvironmentAllure("browser", envConfig.getBrowser());
         setEnvironmentAllure("platform", envConfig.getPlatform());
     }
